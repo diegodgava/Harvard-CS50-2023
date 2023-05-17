@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            document.addEventListener('DOMContentLoaded', () => {
+            const part1Buttons = document.querySelectorAll('.part1');
+            const inputField = document.querySelector('.free-response-input');
+            const confirmationButton = document.querySelector('#part2');
+
+            for (let i = 0; i < part1Buttons.length; i++) {
+                part1Buttons[i].addEventListener('click', () => {
+                const selectedButton = part1Buttons[i];
+                const answer = selectedButton.textContent.trim();
+                const isCorrectAnswer = answer === 'Brasilia';
+
+                     if (isCorrectAnswer) {
+                        selectedButton.style.backgroundColor = 'green';
+                         displayAnswerStatus('Correct!');
+                     } else {
+                        selectedButton.style.backgroundColor = 'red';
+                        displayAnswerStatus('Incorrect');
+                    }
+                     });
+                    }
+
+            function displayAnswerStatus(status) {
+            const answerStatus = document.querySelector('.answer-status');
+            answerStatus.textContent = status;
+        }
+
+        confirmationButton.addEventListener('click', () => {
+            const userAnswer = inputField.value.trim();
+             const isCorrectAnswer = userAnswer.toLowerCase() === 'cristo redentor';
+
+            if (isCorrectAnswer) {
+             inputField.style.backgroundColor = 'green';
+            displayAnswer2Status('Correct!');
+             } else {
+             inputField.style.backgroundColor = 'red';
+            displayAnswer2Status('Incorrect');
+             }
+            });
+            function displayAnswer2Status(status) {
+            const answer2Status = document.querySelector('.free-response-answer-status');
+             answer2Status.textContent = status;
+     }
+        });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>What's the capital of Brazil?</h3>
+                <button class='part1'>Rio de Janeiro</button>
+                <button class='part1'>Brasilia</button>
+                <button class='part1'>São Paulo</button>
+                <p class="answer-status"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>What's the name of the famous Rio de Janeiro's statue?</h3>
+                <input class="free-response-input"> <button id='part2'>Check Answer</button>
+                <p class="free-response-answer-status"></p>
+
+            </div>
+        </div>
+    </body>
+</html>
